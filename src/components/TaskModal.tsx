@@ -26,7 +26,7 @@ export default function TaskModal({ task, onClose }: TaskModalProps) {
     due_date: task?.due_date || '',
     category: task?.category || 'work',
     tags: task?.tags || [],
-    assignees: task?.assignees?.map((a) => a.id) || [],
+    assignees: task?.assignees.map((a) => a.id) || [],
   });
 
   const [newTag, setNewTag] = useState('');
@@ -76,7 +76,7 @@ export default function TaskModal({ task, onClose }: TaskModalProps) {
 
     try {
       if (isEditing && task) {
-        const canUpdate = isAdmin || task.assignees?.some((a) => a.id === profile.id);
+        const canUpdate = isAdmin || task.assignees.some((a) => a.id === profile.id);
         if (!canUpdate) {
           alert('You do not have permission to edit this task');
           return;
@@ -201,7 +201,7 @@ export default function TaskModal({ task, onClose }: TaskModalProps) {
     setFormData({ ...formData, tags: formData.tags.filter((t) => t !== tag) });
   };
 
-  const canEdit = isAdmin || (task && task.assignees?.some((a) => a.id === profile?.id));
+  const canEdit = isAdmin || (task && task.assignees.some((a) => a.id === profile?.id));
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
